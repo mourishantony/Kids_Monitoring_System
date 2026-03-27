@@ -32,6 +32,10 @@ def live_monitoring():
 def alerts_page():
     return render_template('alerts.html', alerts=ALERTS)
 
+@app.route('/settings')
+def settings_page():
+    return render_template('settings.html')
+
 @app.route('/kid/<kid_id>')
 def kid_details(kid_id):
     kid = KIDS_DB.get(kid_id)

@@ -15,16 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    // System Link Behavior
-    const systemBtn = document.getElementById('nav-system');
-    if (systemBtn) {
-        systemBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            createToast('System settings are locked for administrative access.', 'warning');
-        });
-    }
-
-    // Simulation of periodic alerts
+    // Simulation of periodic alerts (simulated AI detection events)
     setTimeout(() => {
         createToast('Alert: Unknown person detected at South Fence.', 'error');
     }, 15000);

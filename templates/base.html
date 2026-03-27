@@ -43,7 +43,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link" id="nav-system">
+                    <a href="{{ url_for('settings_page') }}" class="nav-link {% if request.endpoint == 'settings_page' %}active{% endif %}" id="nav-system">
                         <i class="fa-solid fa-sliders"></i>
                         <span>Settings</span>
                     </a>
