@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids Monitoring | Campus Control</title>
+    
+    <!-- Design Stack -->
+    <link rel="icon" type="image/svg+xml" href="https://img.icons8.com/parakeet/48/000000/baby.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <!-- Navigation Sidebar -->
+    <aside class="sidebar">
+        <a href="{{ url_for('dashboard') }}" class="logo-section">
+            <div class="logo-icon">
+                <i class="fa-solid fa-shield-cat"></i>
+            </div>
+            <div class="logo-text">KIDS<span>AI</span></div>
+        </a>
+
+        <nav>
+            <ul class="nav-links">
+                <li class="nav-item">
+                    <a href="{{ url_for('dashboard') }}" class="nav-link {% if request.endpoint == 'dashboard' %}active{% endif %}">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('live_monitoring') }}" class="nav-link {% if request.endpoint == 'live_monitoring' %}active{% endif %}">
+                        <i class="fa-solid fa-satellite-dish"></i>
+                        <span>Live Feed</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('alerts_page') }}" class="nav-link {% if request.endpoint == 'alerts_page' %}active{% endif %}">
+                        <i class="fa-solid fa-tower-broadcast"></i>
+                        <span>Alert Log</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" id="nav-system">
+                        <i class="fa-solid fa-sliders"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <!-- Bottom Section -->
+        <div style="margin-top: auto;">
+             <div class="system-status" style="width: 100%; border: none; background: var(--brand-light);">
+                <div class="status-dot"></div>
+                <span style="font-size: 0.75rem;">AI CO-PILOT ACTIVE</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Content Area -->
+    <main class="main-content">
+        <header>
+            <div class="header-title">
+                <h1>{% block page_title %}{% endblock %}</h1>
+                <p>{% block page_subtitle %}{% endblock %}</p>
+            </div>
+            
+            <div class="header-actions" style="display: flex; gap: 1rem;">
+                <button class="btn btn-primary" style="background: var(--brand-dark);"><i class="fa-solid fa-plus"></i></button>
+            </div>
+        </header>
+
+        {% block content %}{% endblock %}
+
+        <!-- Toast Notifications -->
+        <div class="toast-container" id="notifications"></div>
+    </main>
+
+    <!-- Global Loader -->
+    <div class="loader-screen" id="app-loader">
+        <div class="spinner-clean"></div>
+    </div>
+
+    <!-- UI Logic -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

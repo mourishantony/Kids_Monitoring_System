@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block page_title %}Surveillance Center{% endblock %}
+{% block page_subtitle %}Full-spectrum monitoring with active AI tracking{% endblock %}
+
+{% block content %}
+<div class="section-card" style="padding: 1.5rem; margin-bottom: 2.5rem;">
+    <div class="section-header" style="margin-bottom: 1.5rem;">
+        <div style="display: flex; gap: 1rem; align-items: center;">
+            <h2>Live Feed Focus</h2>
+            <div class="system-status" style="border: none; background: #FEF2F2; color: #991B1B;">
+                <div class="status-dot" style="background: #EF4444;"></div>
+                RT-FEED 01: PLAYGROUND
+            </div>
+        </div>
+        <div style="display: flex; gap: 0.75rem;">
+             <button class="btn btn-primary"><i class="fa-solid fa-arrows-to-eye"></i> Track Subject</button>
+             <button class="btn btn-primary" style="background: var(--brand-light); color: var(--brand-dark);"><i class="fa-solid fa-expand"></i> Fullscreen</button>
+        </div>
+    </div>
+    
+    <div class="feed-container" style="aspect-ratio: 16/7; background: #000; border-radius: var(--radius-xl); overflow: hidden; position: relative;">
+        <div class="live-badge" style="background: rgba(0,0,0,0.6);">🔴 SURVEILLANCE LIVE</div>
+        <img src="https://images.unsplash.com/photo-1472162014730-6844565e1d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Full Surveillance Feed" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.8;">
+        
+        <!-- Tracking Overlays -->
+        <div id="active-tracking">
+            <div class="tracking-overlay" style="position: absolute; border: 2px solid #10B981; top: 30%; left: 45%; width: 140px; height: 280px; border-radius: 8px; transition: all 1s ease-in-out; box-shadow: 0 0 10px rgba(16,185,129,0.3);">
+                <div style="position: absolute; top: -30px; background: #10B981; color: white; padding: 4px 10px; font-size: 0.7rem; font-weight: 700; border-radius: 4px; white-space: nowrap;"> ARYAN SHARMA (ID: 001) </div>
+            </div>
+             <div class="tracking-overlay" style="position: absolute; border: 2px solid #EF4444; top: 20%; left: 15%; width: 120px; height: 240px; border-radius: 8px; transition: all 1s ease-in-out; box-shadow: 0 0 10px rgba(239,68,68,0.3);">
+                <div style="position: absolute; top: -30px; background: #EF4444; color: white; padding: 4px 10px; font-size: 0.7rem; font-weight: 700; border-radius: 4px; white-space: nowrap;"> UNKNOWN PERSON • ALERT </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="dashboard-grid">
+    <div class="stat-card">
+        <h3>ACTIVE PERSONS</h3>
+        <p class="value">3</p>
+    </div>
+    <div class="stat-card">
+         <h3>RECOGNITION</h3>
+        <p class="value">99.4<small style="font-size: 1rem;">%</small></p>
+    </div>
+     <div class="stat-card">
+         <h3>SIGNAL</h3>
+        <p class="value">EXCELLENT</p>
+    </div>
+     <div class="stat-card">
+         <h3>LATENCY</h3>
+        <p class="value">12<small style="font-size: 1rem;">MS</small></p>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // High-precision tracking drift simulation
+        const boxes = document.querySelectorAll('.tracking-overlay');
+        setInterval(() => {
+            boxes.forEach(box => {
+                const top = parseFloat(box.style.top);
+                const left = parseFloat(box.style.left);
+                // Subtle, professional drift
+                box.style.top = (top + (Math.random() * 0.6 - 0.3)) + '%';
+                box.style.left = (left + (Math.random() * 0.6 - 0.3)) + '%';
+            });
+        }, 1200);
+    });
+</script>
+{% endblock %}
