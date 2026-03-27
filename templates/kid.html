@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block page_title %}Subject Profile{% endblock %}
+{% block page_subtitle %}Biometric data and historical tracking for {{ kid.name }}{% endblock %}
+
+{% block content %}
+<div class="section-card">
+    <div class="profile-layout">
+        <!-- Sidebar within Profile -->
+        <div class="profile-aside">
+            <img src="{{ kid.image }}" alt="{{ kid.name }}" class="profile-img-large">
+            <div style="margin-top: 1.5rem; text-align: center;">
+                <h2 style="font-size: 1.75rem; margin-bottom: 0.5rem; font-family: 'Space Grotesk';">{{ kid.name }}</h2>
+                <div style="display: flex; gap: 0.5rem; justify-content: center;">
+                    {% if kid.status.lower() == 'safe' %}
+                        <span class="badge badge-success">SECURE • {{ kid.status.upper() }}</span>
+                    {% else %}
+                        <span class="badge badge-alert">CRITICAL • {{ kid.status.upper() }}</span>
+                    {% endif %}
+                </div>
+            </div>
+            <div style="margin-top: 2rem; display: flex; flex-direction: column; gap: 0.75rem;">
+                 <button class="btn btn-primary" style="width: 100%;">SEND NOTIFICATION</button>
+                 <button class="btn" style="width: 100%; border: 1px solid var(--border-subtle); background: white;">ASSIGN ESCORT</button>
+            </div>
+        </div>
+
+        <!-- Main Info -->
+        <div class="profile-main">
+            <div class="dashboard-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 2.5rem;">
+                <div class="stat-card">
+                    <h3>AGE BUCKET</h3>
+                    <p class="value">{{ kid.age }} <small style="font-size: 1rem;">YEARS</small></p>
+                </div>
+                <div class="stat-card">
+                    <h3>TOTAL UPTIME</h3>
+                    <p class="value">04:15 <small style="font-size: 1rem;">HRS</small></p>
+                </div>
+                <div class="stat-card">
+                    <h3>LAST SYNC</h3>
+                    <p class="value" style="font-size: 1.5rem;">{{ kid.last_seen }}</p>
+                </div>
+            </div>
+
+            <!-- Movement Log Table/Timeline -->
+            <div style="padding: 2.5rem; background: var(--bg-main); border-radius: var(--radius-xl); border: 1px solid var(--border-subtle);">
+                <h3 style="font-family: 'Space Grotesk'; margin-bottom: 2rem; letter-spacing: -0.5px;">Activity Timeline</h3>
+                <div style="display: flex; flex-direction: column; gap: 2rem; position: relative; padding-left: 20px;">
+                    <div style="border-left: 2px solid var(--border-subtle); position: absolute; left: 24px; top: 10px; bottom: 10px; z-index: 0;"></div>
+                    
+                    <div style="display: flex; gap: 2rem; position: relative; z-index: 1;">
+                         <div style="width: 10px; height: 10px; border-radius: 50%; background: var(--brand-primary); margin-top: 6px; outline: 6px solid #DBEAFE;"></div>
+                         <div>
+                             <p style="font-weight: 700; font-size: 1rem; color: var(--brand-dark);">Subject Exit detected</p>
+                             <span style="font-size: 0.8rem; color: var(--text-secondary);">Gate A-02 Path • 12:05 PM</span>
+                         </div>
+                    </div>
+
+                    <div style="display: flex; gap: 2rem; position: relative; z-index: 1;">
+                         <div style="width: 10px; height: 10px; border-radius: 50%; background: var(--text-secondary); margin-top: 6px;"></div>
+                         <div>
+                             <p style="font-weight: 700; font-size: 1rem; color: var(--text-secondary);">Face Tracking Active</p>
+                             <span style="font-size: 0.8rem; color: var(--text-secondary);">Playground Corridor • 11:30 AM</span>
+                         </div>
+                    </div>
+
+                    <div style="display: flex; gap: 2rem; position: relative; z-index: 1;">
+                         <div style="width: 10px; height: 10px; border-radius: 50%; background: var(--text-secondary); margin-top: 6px;"></div>
+                         <div>
+                             <p style="font-weight: 700; font-size: 1rem; color: var(--text-secondary);">Entry Verified</p>
+                             <span style="font-size: 0.8rem; color: var(--text-secondary);">Main Entrance • 09:15 AM</span>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block page_title %}Alert Intelligence Log{% endblock %}
+{% block page_subtitle %}Centralized view of all recognized security events and tracking triggers{% endblock %}
+
+{% block content %}
+<div class="section-card">
+    <div class="section-header">
+        <h2>System Events</h2>
+        <div style="display: flex; gap: 1rem;">
+             <button class="btn btn-primary" style="background: var(--brand-light); color: var(--brand-dark);">Filter: All Events</button>
+             <button class="btn btn-primary">Download Archive</button>
+        </div>
+    </div>
+    
+    <div id="alert-feed" style="display: flex; flex-direction: column; gap: 1rem;">
+        {% for alert in alerts %}
+        <div style="background: var(--bg-main); padding: 1.5rem; border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: space-between; border: 1px solid var(--border-subtle);">
+            <div style="display: flex; gap: 1.5rem; align-items: center;">
+                {% if alert.critical %}
+                <div style="width: 48px; height: 48px; border-radius: 12px; background: #FEF2F2; display: flex; align-items: center; justify-content: center;">
+                    <i class="fa-solid fa-radiation" style="color: var(--accent-error);"></i>
+                </div>
+                {% else %}
+                <div style="width: 48px; height: 48px; border-radius: 12px; background: #F1F5F9; display: flex; align-items: center; justify-content: center;">
+                    <i class="fa-solid fa-info-circle" style="color: var(--brand-primary);"></i>
+                </div>
+                {% endif %}
+                <div>
+                    <div style="font-weight: 700; color: var(--brand-dark);">{{ alert.message }}</div>
+                    <div style="font-size: 0.75rem; color: var(--text-secondary);">Detected by Sensor Hub 04 • {{ alert.time }}</div>
+                </div>
+            </div>
+            <div>
+                <button class="btn" style="background: var(--surface); border: 1px solid var(--border-subtle); font-size: 0.75rem;">REVIEW FOOTAGE</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
